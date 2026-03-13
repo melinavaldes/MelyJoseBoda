@@ -11,68 +11,83 @@
 
 body{
 margin:0;
-font-family:Georgia, serif;
-background-color:#f3eee7;
-background-image:url("paper.png");
+background:#f3eee7;
 display:flex;
 align-items:center;
 justify-content:center;
 height:100vh;
-text-align:center;
+overflow:hidden;
 }
 
-/* pantalla sobre */
+/* CONTENEDOR SOBRE */
 
 #sobre{
+position:relative;
+width:420px;
 cursor:pointer;
 }
 
-.sello{
-width:130px;
-height:130px;
-background:#dba5a5;
+/* IMAGEN SOBRE */
+
+#sobre img{
+width:100%;
+display:block;
+border-radius:4px;
+}
+
+/* SELLO CLICKEABLE */
+
+#sello{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:120px;
+height:120px;
 border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-margin:auto;
-font-size:34px;
-color:white;
-font-family:serif;
-box-shadow:
-0 10px 20px rgba(0,0,0,0.15),
-inset 0 2px 6px rgba(255,255,255,0.3);
 }
 
-.texto{
-margin-top:20px;
-font-size:20px;
-color:#666;
+/* SOLAPAS ANIMADAS */
+
+.solapa{
+position:absolute;
+width:100%;
+height:50%;
+background:#e9e3db;
+left:0;
+transition:1s;
 }
 
-/* invitacion */
+.arriba{
+top:0;
+transform-origin:top;
+}
 
-#invitacion{
-display:none;
+.abajo{
+bottom:0;
+transform-origin:bottom;
+}
+
+/* CUANDO SE ABRE */
+
+.abrir .arriba{
+transform:rotateX(180deg);
+}
+
+.abrir .abajo{
+transform:rotateX(-180deg);
+}
+
+/* PÁGINA FINAL */
+
+#pagina{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
 background:white;
-padding:40px;
-border-radius:10px;
-max-width:350px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-}
-
-h1{
-font-weight:normal;
-}
-
-button{
-margin-top:20px;
-padding:14px 26px;
-background:#c4a484;
-border:none;
-color:white;
-font-size:16px;
-border-radius:6px;
+display:none;
 }
 
 </style>
@@ -81,48 +96,32 @@ border-radius:6px;
 
 <body>
 
-<div id="sobre" onclick="abrirInvitacion()">
+<div id="sobre">
 
-<div class="sello">
-M & J
-</div>
+<img src="sobre.jpg">
 
-<div class="texto">
-Esta invitación es exclusiva para ti
-</div>
+<div id="sello" onclick="abrirSobre()"></div>
 
-</div>
-
-<div id="invitacion">
-
-<h1>Melina & José</h1>
-
-<p>Nos encantaría que nos acompañaras<br>en nuestra boda</p>
-
-<p>
-31 Octubre 2026
-</p>
-
-<p>
-Skeabost House Hotel<br>
-Isle of Skye
-</p>
-
-<button onclick="rsvp()">
-Confirmar asistencia
-</button>
+<div class="solapa arriba"></div>
+<div class="solapa abajo"></div>
 
 </div>
+
+<div id="pagina"></div>
 
 <script>
 
-function abrirInvitacion(){
-document.getElementById("sobre").style.display="none";
-document.getElementById("invitacion").style.display="block";
-}
+function abrirSobre(){
 
-function rsvp(){
-window.location.href="https://forms.gle/";
+const sobre = document.getElementById("sobre")
+
+sobre.classList.add("abrir")
+
+setTimeout(()=>{
+sobre.style.display="none"
+document.getElementById("pagina").style.display="block"
+},1000)
+
 }
 
 </script>
