@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Melina & José</title>
+<title>Melina & Jose</title>
 
 <style>
 
@@ -13,26 +13,24 @@ body{
 margin:0;
 background:#f3eee7;
 display:flex;
-align-items:center;
 justify-content:center;
+align-items:center;
 height:100vh;
-overflow:hidden;
+font-family:serif;
 }
 
-/* CONTENEDOR SOBRE */
+/* CONTENEDOR */
 
-#sobre{
+#contenedor{
 position:relative;
 width:420px;
-cursor:pointer;
 }
 
-/* IMAGEN SOBRE */
+/* SOBRE */
 
 #sobre img{
 width:100%;
 display:block;
-border-radius:4px;
 }
 
 /* SELLO CLICKEABLE */
@@ -42,52 +40,43 @@ position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-width:120px;
-height:120px;
-border-radius:50%;
+width:140px;
+height:140px;
+cursor:pointer;
 }
 
-/* SOLAPAS ANIMADAS */
+/* INVITACION */
 
-.solapa{
+#invitacion{
 position:absolute;
-width:100%;
-height:50%;
-background:#e9e3db;
-left:0;
-transition:1s;
-}
-
-.arriba{
-top:0;
-transform-origin:top;
-}
-
-.abajo{
-bottom:0;
-transform-origin:bottom;
-}
-
-/* CUANDO SE ABRE */
-
-.abrir .arriba{
-transform:rotateX(180deg);
-}
-
-.abrir .abajo{
-transform:rotateX(-180deg);
-}
-
-/* PÁGINA FINAL */
-
-#pagina{
-position:absolute;
-top:0;
+bottom:-100%;
 left:0;
 width:100%;
 height:100%;
 background:white;
-display:none;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+transition:1.2s;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* CUANDO SE ABRE */
+
+.abrir #invitacion{
+bottom:0;
+}
+
+h1{
+font-weight:normal;
+font-size:34px;
+margin-bottom:10px;
+}
+
+p{
+color:#555;
 }
 
 </style>
@@ -96,31 +85,35 @@ display:none;
 
 <body>
 
+<div id="contenedor">
+
 <div id="sobre">
 
 <img src="sobre.jpg">
 
 <div id="sello" onclick="abrirSobre()"></div>
 
-<div class="solapa arriba"></div>
-<div class="solapa abajo"></div>
+</div>
+
+<div id="invitacion">
+
+<h1>Melina & José</h1>
+
+<p>Nos encantaría que nos acompañaras</p>
+
+<p>31 Octubre 2026</p>
+
+<p>Skeabost House Hotel<br>Isle of Skye</p>
 
 </div>
 
-<div id="pagina"></div>
+</div>
 
 <script>
 
 function abrirSobre(){
 
-const sobre = document.getElementById("sobre")
-
-sobre.classList.add("abrir")
-
-setTimeout(()=>{
-sobre.style.display="none"
-document.getElementById("pagina").style.display="block"
-},1000)
+document.getElementById("contenedor").classList.add("abrir")
 
 }
 
