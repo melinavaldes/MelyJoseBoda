@@ -63,6 +63,7 @@ transform:translate(-50%,-50%);
 width:120px;
 height:120px;
 cursor:pointer;
+transition:0.4s;
 }
 
 /* INVITACION */
@@ -134,7 +135,11 @@ bottom:80px;
 <script>
 
 function abrirSobre(){
+
+document.getElementById("sello").style.opacity="0"
+
 document.getElementById("contenedor").classList.add("abrir")
+
 }
 
 </script>
